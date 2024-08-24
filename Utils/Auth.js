@@ -34,8 +34,8 @@ export const ResetToken =async(payload)=>{
 
 // Validate JWT token - Expiration
 export const Validate =async(req,res,next)=>{
-    if(req.cookies.token){
-        let token = req.cookies.token
+    if(req.cookies.token || req.headers.authorization){
+        let token = req.cookies.token || req.headers.authorization.split(" ")[1]
         let data = await jwt.decode(token)
         if(Math.floor((+new Date())/1000) < data.exp){
             next()
@@ -52,8 +52,8 @@ export const Validate =async(req,res,next)=>{
 
 // Validate for Users - Only Manager and Admins
 export const isAdminManager =async(req,res,next)=>{
-    if(req.cookies.token){
-        let token = req.cookies.token
+    if(req.cookies.token || req.headers.authorization){
+        let token = req.cookies.token || req.headers.authorization.split(" ")[1]
         let data = await jwt.decode(token)
         if(data.Access=="Granted" && (data.Role=="Admin" || data.Role=="Manager")){
             next()
@@ -70,8 +70,8 @@ export const isAdminManager =async(req,res,next)=>{
 
 // Validate for Manager - only Admins
 export const isAdmin =async(req,res,next)=>{
-    if(req.cookies.token){
-        let token = req.cookies.token
+    if(req.cookies.token || req.headers.authorization){
+        let token = req.cookies.token || req.headers.authorization.split(" ")[1]
         let data = await jwt.decode(token)
         if(data.Access=="Granted" && data.Role=="Admin"){
             next()
@@ -88,8 +88,8 @@ export const isAdmin =async(req,res,next)=>{
 
 // Validate for Leads - Admins,Manager and Employees with Access
 export const isAdminEmpManager =async(req,res,next)=>{
-    if(req.cookies.token){
-        let token = req.cookies.token
+    if(req.cookies.token || req.headers.authorization){
+        let token = req.cookies.token || req.headers.authorization.split(" ")[1]
         let data = await jwt.decode(token)
         if(data.Access=="Granted"){
             next()
@@ -106,8 +106,8 @@ export const isAdminEmpManager =async(req,res,next)=>{
 
 // Validate for ServiceRequests -Only Leads
 export const isLead =async(req,res,next)=>{
-    if(req.cookies.token){
-        let token = req.cookies.token
+    if(req.cookies.token || req.headers.authorization){
+        let token = req.cookies.token || req.headers.authorization.split(" ")[1]
         let data = await jwt.decode(token)
         if(data.Role=="Lead"){
             next()
