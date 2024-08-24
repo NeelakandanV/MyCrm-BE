@@ -18,10 +18,7 @@ import unknownEndpoint from "./Utils/Error.js";
 dotenv.config();
 const app = express();
 app.use(express.json());
-app.use(cors({
-    origin: 'http://localhost:5000',
-    credentials: true
-}));
+app.use(cors());
 app.use(requestLogger)
 app.use(cookieParser());
 
