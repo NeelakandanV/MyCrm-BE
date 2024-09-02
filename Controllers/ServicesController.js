@@ -9,7 +9,7 @@ import Leads from "../Models/LeadsSchema.js";
 dotenv.config();
 
 
-// Creating a Request - Create - Post (Only Leads)
+// Creating a Request - Create - Post (Leads Only)
 export const CreateService_Request = async(req,res)=>{
     try{
         const token = req.cookies.token || req.headers.authorization.split(" ")[1];
