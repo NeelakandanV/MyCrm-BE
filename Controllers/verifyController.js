@@ -124,7 +124,7 @@ export const VerifyUserLink = async(req,res)=>{
                 Name : find_User.First_Name,
                 Email : find_User.Email
             })
-            const link = `https://mycrm-d2t8.onrender.com/verifyUser/${find_User._id}/${ResetString}/${token}`
+            const link = `https://mycrmportal.netlify.app/verifyUser/${find_User._id}/${ResetString}/${token}`
 
             // for Sending mails - nodemailer
                 var transporter = nodemailer.createTransport({
@@ -210,7 +210,7 @@ export const ForgotPassword = async(req,res)=>{
                 Name : find_User.First_Name,
                 Email : find_User.Email
             })
-            const link = `https://mycrm-d2t8.onrender.com/ResetPassword/${find_User._id}/${ResetString}/${token}`
+            const link = `https://mycrmportal.netlify.app/ResetPassword/${find_User._id}/${ResetString}/${token}`
             // for Sending mails - nodemailer
             var transporter = nodemailer.createTransport({
                 service: 'gmail',
@@ -266,7 +266,7 @@ export const Leads_ForgotPassword = async(req,res)=>{
                 Name : find_Lead.First_Name,
                 Email : find_Lead.Email
             })
-            const link = `https://mycrm-d2t8.onrender.com/Lead/ResetPassword/${find_Lead._id}/${ResetString}/${token}`
+            const link = `https://mycrmportal.netlify.app/Lead/ResetPassword/${find_Lead._id}/${ResetString}/${token}`
             // for Sending mails - nodemailer
             var transporter = nodemailer.createTransport({
                 service: 'gmail',
