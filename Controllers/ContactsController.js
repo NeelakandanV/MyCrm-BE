@@ -15,7 +15,7 @@ export const CreateContacts = async(req,res)=>{
     try{
         const find_User = await Contacts.findOne({Email:req.body.Email})
         if(!find_User){
-            const token = req.cookies.token;
+            const token = req.cookies.token || req.headers.authorization.split(" ")[1];
             const data = await jwt.decode(token)
             const UserData = await Contacts.create({
                 First_Name : req.body.First_Name,
@@ -121,7 +121,7 @@ export const Contact_to_Lead = async(req,res)=>{
         const {id} = req.params;
         const find_User = await Contacts.findOne({Email: id})
         if(find_User){
-            const token = req.cookies.token;
+            const token = req.cookies.token || req.headers.authorization.split(" ")[1];
             const data = await jwt.decode(token)
             
             const UserData = await Leads.create({

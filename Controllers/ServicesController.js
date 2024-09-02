@@ -12,7 +12,7 @@ dotenv.config();
 // Creating a Request - Create - Post (Only Leads)
 export const CreateService_Request = async(req,res)=>{
     try{
-        const token = req.cookies.token;
+        const token = req.cookies.token || req.headers.authorization.split(" ")[1];
         const data = await jwt.decode(token)
         const find_User = await Leads.findOne({_id:data.Id})
         if(find_User){

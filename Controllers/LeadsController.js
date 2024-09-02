@@ -14,7 +14,7 @@ export const CreateLeads = async(req,res)=>{
     try{
         const find_User = await Leads.findOne({Email:req.body.Email})
         if(!find_User){
-            const token = req.cookies.token;
+            const token = req.cookies.token || req.headers.authorization.split(" ")[1];
             const data = await jwt.decode(token)
             let hashedPassword = await hashPassword(req.body.Password)
             req.body.Password = hashedPassword;
